@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import axios from "axios";
+import { useEffect, useState } from "react";
+import { ListItem } from "./components/ListItem";
+import { User } from "./types/user";
 
-function App() {
+// type User = {
+//   id: number;
+//   name: string;
+//   age: number;
+//   personalColor: string;
+// };
+
+export const App = () => {
+  const [user, setUser] = useState<Array<User>>([]);
+
+  useEffect(() => {
+    // axios.get<Array<User>>("https://example.com/users").then((res) => {
+    //   setUser(res.data);
+    // });
+    setUser([
+      {
+        id: 1,
+        name: "田中",
+        age: 24,
+        personalColor: "red",
+      },
+      {
+        id: 2,
+        name: "吉田",
+        age: 26,
+        personalColor: "green",
+      },
+      {
+        id: 3,
+        name: "鈴木",
+        age: 45,
+        personalColor: "blue",
+      },
+    ]);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {user.map((user) => (
+        <ListItem
+          key={user.id}
+          id={user.id}
+          name={user.name}
+          age={user.age}
+          personalColor={user.personalColor}
+        />
+      ))}
     </div>
   );
-}
-
-export default App;
+};
