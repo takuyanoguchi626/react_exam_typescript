@@ -1,7 +1,7 @@
 // import axios from "axios";
 import { useEffect, useState } from "react";
 import { ListItem } from "./components/ListItem";
-import { User } from "./types/user";
+import type { User } from "./types/user";
 
 // type User = {
 //   id: number;
@@ -12,7 +12,6 @@ import { User } from "./types/user";
 
 export const App = () => {
   const [user, setUser] = useState<Array<User>>([]);
-
   useEffect(() => {
     // axios.get<Array<User>>("https://example.com/users").then((res) => {
     //   setUser(res.data);
@@ -35,10 +34,10 @@ export const App = () => {
         name: "鈴木",
         age: 45,
         personalColor: "blue",
+        hobbys: ["soccer", "baseball"],
       },
     ]);
   }, []);
-
   return (
     <div>
       {user.map((user) => (
@@ -47,7 +46,7 @@ export const App = () => {
           id={user.id}
           name={user.name}
           age={user.age}
-          personalColor={user.personalColor}
+          hobbys={user.hobbys}
         />
       ))}
     </div>

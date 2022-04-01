@@ -1,5 +1,5 @@
-import React from "react";
-import { User } from "../types/user";
+import type { FC } from "react";
+import type { User } from "../types/user";
 
 // type User = {
 //   id: number;
@@ -8,12 +8,17 @@ import { User } from "../types/user";
 //   personalColor: string;
 // };
 
-export const ListItem = (props: User) => {
-  const { id, name, age, personalColor } = props;
+export const ListItem: FC<User> = (props) => {
+  const { id, name, age, personalColor, hobbys } = props;
 
   return (
     <p style={{ color: personalColor }}>
-      {id}:{name}({age})
+      {id}:{name}({age})-
+      {hobbys?.join("/")}
     </p>
   );
+};
+
+ListItem.defaultProps = {
+  personalColor: "red",
 };
